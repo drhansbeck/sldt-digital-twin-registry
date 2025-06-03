@@ -150,3 +150,24 @@ stages:
     response:
       status_code: 204
 
+  - name: Create shell descriptor with subprotocolbody within specs expect success
+    request:
+      url: "{aas_registry_api_url:s}/api/v3/shell-descriptors"
+      method: POST
+      headers:
+        Content-Type: application/json
+        Authorization: "Bearer {access_token}"
+        Edc-Bpn: "{edc_bpn:s}"
+      json:
+        id: "237c2f3c-4b08-4057-957d-25f58c8737ce"
+        idShort: digital twin of a break (Testing)
+        specificAssetIds: [{
+          "name":"PartInstanceID",
+          "value":"76422245654305"
+        }]
+        "subprotocolBody": "id=9b0608e1-db04-45e4-9193-eac9b1faffbf;dspEndpoint=https://my-edc-for-catena-x-use-case.product-name.environment.edcaas-company.com/api/v1/dsp"
+    response:
+      status_code: 201
+      headers:
+        content-type: application/json
+
